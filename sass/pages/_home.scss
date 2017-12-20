@@ -1,0 +1,80 @@
+body {
+  font-family: 'Comfortaa', cursive;
+}
+
+.space {
+  height: 210px;
+}
+
+.bg-foto {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  z-index: 0;
+  .img {
+    position: relative;
+  }
+  .position-text {
+    color: $white-c;
+    font-size: 70px;
+    font-weight: bold;
+    position: absolute;
+    z-index: 1;
+    top: 390px;
+    left: 400px;
+  }
+  span {
+    position: absolute;
+    z-index: 2;
+    top: 500px;
+    left: 400px;
+    color: $white-c;
+    font-size: 23px;
+    font-weight: bold;
+  }
+
+}
+
+/*=====SECOND SECTION=======*/
+
+.second-section {
+  h2 {
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: $blue-c;
+    margin-bottom: 50px;
+  }
+  .main-chocie {
+    span {
+      font-family: 'Raleway', sans-serif;
+      display: block;
+      text-align: center;
+      color: $grey-c;
+      font-weight: 300;
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+  }
+  .main-button {
+    display: block;
+    margin: auto;
+    color: $white-c;
+    background: $blue-c;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+  .massage {
+    display: block;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    color: $dark-grey-c;
+    font-size: 19px;
+    font-weight: bold;
+  }
+}
