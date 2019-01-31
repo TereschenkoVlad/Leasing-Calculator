@@ -8,7 +8,15 @@ li {
   list-style: none;
 
 }
+li:hover {
+  background: none;
+  text-decoration: none;
+}
 a {
+  text-decoration: none;
+
+}
+a:hover {
   text-decoration: none;
 }
 

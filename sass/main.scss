@@ -1,15 +1,12 @@
 
 @import 'utils/variables';
 
-@import 'base/typography';
-@import "resent/_normalize.sccs";
+@import "resent/normalize";
 
 @import 'layout/grid';
 @import 'layout/header';
 @import 'layout/footer';
 
 @import 'pages/home';
-
-@import 'themes/theme';
 
 
