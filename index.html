@@ -5,79 +5,91 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/main.css">
     <title>Лізінговий калькулятор</title>
 </head>
 <body>
 
 <section class="welcome-main-section">
-    <div class="container">
-        <h1 class="page-title">Лізинговий калькулятор</h1>
+    <div class="my-container">
         <div class="calculator">
-            <form>
+            <h1 class="page-title">Лізинговий калькулятор</h1>
+            <!--<form>-->
                 <label>
                     Тип об*єкту лізингу:
-                    <select name="" id="">
-                        <option value="" selected>Будівлі, споруди, земля</option>
-                        <option value="">автотранспорт, е/м прилади</option>
-                        <option value="">комп*ютери, телефони</option>
+                    <select>
+                        <option>Будівлі, споруди, земля</option>
+                        <option>автотранспорт, е/м прилади</option>
+                        <option>інше</option>
+                        <option>комп*ютери, телефони</option>
                     </select>
                 </label>
 
                 <div class="inputs-container">
                     <label for="term-leasing">
                         Термін дії лізингу:
-                        <input type="number" id="term-leasing" required>
+                        <input type="number" value="5" placeholder="5" id="term-leasing" required>
+                        <span>місяців</span>
                     </label>
 
                     <label for="how-much-cost">
                         Вартість об*єкту лізингу:
-                        <input type="number" id="how-much-cost" required>
+                        <input type="number" value="100000" placeholder="100000" id="how-much-cost" required>
+                        <span>грошових одиниць</span>
                     </label>
 
                     <label for="leasing-procent">
                         Лізинговий процент:
-                        <input type="number" id="leasing-procent" required>
+                        <input type="number" value="15" placeholder="15" id="leasing-procent" required>
+                        <span>річних %</span>
                     </label>
 
-                    <label for="first-pass">
-                        Первинний внесок:
-                        <input type="number" id="first-pass" required>
+                    <label for="last-price">
+                        Залишкова вартість:
+                        <input type="number" value="20000" placeholder="20000" id="last-price" required>
+                        <span>%</span>
                     </label>
 
-                    <label for="one-time-tax">
-                        Одноразова комісія:
-                        <input type="number" id="one-time-tax" required>
-                    </label>
-
-                    <label for="amortization">
-                        Армотизація (місячна):
-                        <input type="number" id="amortization" required>
-                    </label>
+                    <!--<label for="one-time-tax">-->
+                        <!--Одноразова комісія:-->
+                        <!--<input type="number" value="1" id="one-time-tax" required>-->
+                        <!--<span>%</span>-->
+                    <!--</label>-->
                 </div>
 
-                <div class="extra-option">
-                    <label for="fast-amortization">
-                        Ускоренная амортизация
-                        <input type="checkbox" id="fast-amortization">
-                    </label>
+                <!--<div class="extra-option">-->
+                    <!--<label for="fast-amortization">-->
+                        <!--<input type="checkbox" id="fast-amortization">-->
+                        <!--Ускоренная амортизация-->
+                    <!--</label>-->
 
-                    <label>
-                        Аннуитетная схема начисления процентов
-                        <input type="radio" id="super-schema" required>
-                        Стандартная схема начисления процентов
-                        <input type="radio" id="default-schema">
-                    </label>
-                </div>
+                    <!--<label>-->
+                        <!--<input type="radio" id="super-schema" required>-->
+                        <!--Аннуитетная схема начисления процентов-->
+                        <!--<br>-->
+                        <!--<input type="radio" id="default-schema">-->
+                        <!--Стандартная схема начисления процентов-->
+                    <!--</label>-->
+                <!--</div>-->
                 <div class="last-submit-line">
-                    <button type="submit">Розрахувати</button>
+                    <button>Розрахувати</button>
                 </div>
-            </form>
+            <!--</form>-->
+
+            <div class="result-block">
+                <h4 class="result-title">Лізинговий платіж:</h4>
+                <span class="result"></span>
+            </div>
         </div>
+
     </div>
 </section>
 <script
         src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+</script>
+<script src="js/main.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

@@ -2,16 +2,5 @@
   max-width: 1000px;
   margin: 0 auto;
 }
-@media screen and (max-width: 1175px) {
-  .my-container {
-    box-sizing: border-box;
-    padding: 0 10px;
-  }
-}
-@media screen and (max-width: 992px) {
-  .my-container {
-    max-width: 820px;
-    overflow: hidden;
-  }
-}
+
 

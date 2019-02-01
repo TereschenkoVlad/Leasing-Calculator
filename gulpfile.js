@@ -54,7 +54,7 @@ gulp.task('js', function() {
 
 gulp.task('watch', ['styles', 'js'], function () {
     gulp.watch('./sass/**/*.scss', ['styles']);
-    gulp.watch('./source-js/**/*.js', ['js']);
+    gulp.watch('./source-js/*.js', ['js']);
 });
 
 gulp.task('default', ['lib-js', 'styles', 'js'], function () {

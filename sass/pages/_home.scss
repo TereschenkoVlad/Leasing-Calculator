@@ -1,0 +1,116 @@
+body {
+  font-family: sans-serif;
+}
+.page-title {
+  margin: 50px 0;
+}
+
+input {
+  padding: 7px 5px;
+  outline: none;
+}
+
+.calculator {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.inputs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  label {
+    position: relative;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+
+  label input {
+    display: block;
+    margin-top: 2px;
+    transition: all 0.3s;
+    &:focus {
+      margin-top: 5px;
+      border: 2px solid #236312;
+    }
+  }
+
+  span {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    font-size: 12px;
+    color: gray;
+    transition: all 0.5s;
+  }
+}
+
+select {
+  background-color: bisque;
+  border: none;
+  outline: none;
+
+  padding: 7px 15px;
+  margin-left: 125px;
+
+  option[selected] {
+    background-color: red;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  * {
+    padding: 10px 15px;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
+.extra-option {
+  margin-top: 40px;
+
+  label {
+    display: block;
+  }
+}
+.last-submit-line {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+  button {
+    background-color: bisque;
+    border-radius: 8px;
+    padding: 10px 15px;
+    outline: none;
+    &:active {
+      box-shadow: inset 1.5px 1.5px 1px #888888;
+    }
+  }
+}
+
+.result-block {
+  position: absolute;
+  bottom: -200px;
+  width: 91%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+  border: 1px solid #a5a5a5;
+  padding: 20px;
+  opacity: 0;
+
+  .result {
+    padding-right: 50px;
+    font-weight: 600;
+    transition: all 1.5s;
+  }
+}
+
+.active {
+  opacity: 1;
+  bottom: -100px;
+  transition: all 0.7s;
+}
