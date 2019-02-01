@@ -1,4 +1,5 @@
 var button = document.querySelector('button');
+var form = document.querySelector('form');
 var resultBlock = document.querySelector('.result-block')
 button.addEventListener('click', function () {
     var startPrice = document.getElementById('how-much-cost').value;
@@ -15,3 +16,15 @@ button.addEventListener('click', function () {
     resultBlock.classList.add('active')
 
 });
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault()
+})
+
+var inputsContainer = document.querySelector('.inputs-container')
+
+inputsContainer.addEventListener('click', function () {
+    resultBlock.classList.remove('active')
+    console.log(2222)
+})
+
