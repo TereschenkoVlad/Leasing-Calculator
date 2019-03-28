@@ -28,25 +28,36 @@
                 <div class="inputs-container">
                     <label for="term-leasing">
                         Термін дії лізингу:
-                        <input type="number" value="5" placeholder="5" id="term-leasing" required>
+                        <input type="number" value="12" placeholder="12" id="term-leasing" required>
                         <span>місяців</span>
                     </label>
 
                     <label for="how-much-cost">
+                        Армотизація місячна:
+                        <input type="number" value="3" placeholder="3" id="arm-month" required>
+                        <span>%</span>
+                    </label>
+                    <label for="term-leasing">
+                        Одноразова комісія:
+                        <input type="number" value="1" placeholder="1" id="once-tax" required>
+                        <span>%</span>
+                    </label>
+
+                    <label for="how-much-cost">
                         Вартість об*єкту лізингу:
-                        <input type="number" value="100000" placeholder="100000" id="how-much-cost" required>
+                        <input type="number" value="50000" placeholder="50000" id="how-much-cost" required>
                         <span>грошових одиниць</span>
                     </label>
 
                     <label for="leasing-procent">
                         Лізинговий процент:
-                        <input type="number" value="15" placeholder="15" id="leasing-procent" required>
+                        <input type="number" value="10" placeholder="10" id="leasing-procent" required>
                         <span>річних %</span>
                     </label>
 
-                    <label for="last-price">
-                        Залишкова вартість:
-                        <input type="number" value="20000" placeholder="20000" id="last-price" required>
+                    <label for="first-price">
+                        Первинний внесок:
+                        <input type="number" value="50" placeholder="50" id="first-price" required>
                         <span>%</span>
                     </label>
 
@@ -57,11 +68,11 @@
                     <!--</label>-->
                 </div>
 
-                <!--<div class="extra-option">-->
-                    <!--<label for="fast-amortization">-->
-                        <!--<input type="checkbox" id="fast-amortization">-->
-                        <!--Ускоренная амортизация-->
-                    <!--</label>-->
+                <div class="extra-option">
+                    <label for="fast-amortization">
+                        <input type="checkbox" id="fast-amortization">
+                        Ускоренная амортизация
+                    </label>
 
                     <!--<label>-->
                         <!--<input type="radio" id="super-schema" required>-->
@@ -70,7 +81,7 @@
                         <!--<input type="radio" id="default-schema">-->
                         <!--Стандартная схема начисления процентов-->
                     <!--</label>-->
-                <!--</div>-->
+                </div>
                 <div class="last-submit-line">
                     <button>Розрахувати</button>
                 </div>
@@ -89,7 +100,10 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-<script src="js/main.js"></script>
-<script src="js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+<!--<script src="js/main.js"></script>-->
+<script src="source-js/main.js"></script>
+<!--<script src="js/app.js"></script>-->
 </body>
 </html>
