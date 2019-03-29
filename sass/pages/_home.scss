@@ -239,3 +239,24 @@ h1 {
   color: #024457;
   span {color: #167F92;}
 }
+
+#pdf {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+  padding: 15px 10px;
+  margin: 0 auto;
+  border: 1px solid #167F92;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-bottom: 80px;
+  margin-top: 50px;
+
+  &:hover {
+    color: #ffffff;
+    border-color: #167F92;
+    background-color: #167F92;
+  }
+}

@@ -2,6 +2,10 @@ var button = document.querySelector('button');
 var form = document.querySelector('form');
 var resultBlock = document.querySelector('.result-block')
 let jsonData = []
+
+let pdfDwnld = document.querySelector('#pdf')
+pdfDwnld.addEventListener('click', renderPDF)
+
 button.addEventListener('click', function () {
     jsonData = []
     var startPrice = document.getElementById('how-much-cost').value;
@@ -77,6 +81,7 @@ button.addEventListener('click', function () {
     }
     leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
     resultBlock.classList.add('active')
+    pdfDwnld.style.visibility = 'visible'
 })
 
 function renderPDF () {
@@ -94,8 +99,6 @@ function renderPDF () {
     })
 }
 
-let pdfDwnld = document.querySelector('#pdf')
-pdfDwnld.addEventListener('click', renderPDF)
 
 
 form.addEventListener('submit', function (event) {
