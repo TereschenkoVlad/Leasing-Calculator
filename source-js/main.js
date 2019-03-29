@@ -6,7 +6,6 @@ button.addEventListener('click', function () {
     var termLeasing = document.getElementById('term-leasing').value;
     var tax = document.getElementById('leasing-procent').value;
     var firstPrice = document.getElementById('first-price').value;
-    // var showResult = document.querySelector('.result')
     var armMonth = document.querySelector('#arm-month')
     var onceTax = document.querySelector('#once-tax').value
 
@@ -17,7 +16,7 @@ button.addEventListener('click', function () {
         var firstPay = startPrise / 100 * firstPrice;
         var payMonth = (startPrise - firstPay) / termLeasing
         var needToPay = startPrise
-        let table = document.createElement('TABLE')
+        let table = document.querySelector('table')
         for (let i=0; i<termLeasing; i++) {
             function payment (startPrise, firstPay, oneTax, taxMounthC, payMonth) {
                 var paymentMonth = 0;
@@ -57,10 +56,18 @@ button.addEventListener('click', function () {
                 tr.appendChild(td)
             }
         }
-        resultBlock.appendChild(table)
     }
     leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
     resultBlock.classList.add('active')
+    $(document).ready(function(){
+        $('.single-item-rtl').slick({
+            dots: false,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: false
+        });
+    });
 })
 
 
@@ -74,4 +81,6 @@ inputsContainer.addEventListener('click', function () {
     resultBlock.classList.remove('active');
     console.log(2222)
 });
+
+
 

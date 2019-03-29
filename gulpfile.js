@@ -60,3 +60,15 @@ gulp.task('watch', ['styles', 'js'], function () {
 gulp.task('default', ['lib-js', 'styles', 'js'], function () {
 
 });
+
+var compass = require('compass');
+
+// compiles in process.cwd()
+compass.compile(function(err, stdout, stderr) {
+    console.log('done');
+});
+
+// compiles in the given directory
+compass.compile({ cwd: __dirname + 'public' }, function(err, stdout, stderr) {
+    console.log('done');
+});
