@@ -11,13 +11,14 @@ $(document).ready(function () {
     pdfDwnld.addEventListener('click', renderPDF)
 
     var loadingDiv = document.getElementById('loading');
-    function showSpinner() {
-        loadingDiv.style.visibility = 'visible';
-        loadingDiv.style.display = 'block';
+
+    function hideSpinner() {
+        loadingDiv.style.visibility = 'hidden';
     }
 
     button.addEventListener('click', function () {
-        showSpinner()
+        loadingDiv.style.visibility = 'visible';
+
         popup.classList.add('pop-active')
         resultBlock.classList.add('active')
         pdfDwnld.style.visibility = 'visible'
@@ -26,6 +27,8 @@ $(document).ready(function () {
         popup.appendChild(arrowBack)
 
         jsonData = []
+
+        let lastRowObj = {}
         var startPrice = document.getElementById('how-much-cost').value;
         var termLeasing = document.getElementById('term-leasing').value;
         var tax = document.getElementById('leasing-procent').value;
@@ -34,7 +37,6 @@ $(document).ready(function () {
         var onceTax = document.querySelector('#once-tax').value
 
         function leasingCalculate(startPrise, termLeasing, tax, firstPrice, armMonth, onceTax) {
-
 
             var taxMounthC = tax / 12;
             var oneTax = (startPrise / 100 * onceTax);
@@ -80,6 +82,24 @@ $(document).ready(function () {
                     finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2).toString()
                 }
 
+                // let generalPayManth
+                // generalPayManth += payMonth
+                //
+                // let generalTaxClient
+                // generalTaxClient += (needToPay * 100 * taxMounthC)
+                //
+                // let generalFinalPayMonth
+                // generalFinalPayMonth += payment(startPrise, firstPay, oneTax, taxMounthC, payMonth)
+
+                // lastRowObj = {
+                //     final: 'Сумма',
+                //     2: '',
+                //     generalPayManth: generalPayManth.toFixed(2),
+                //     generalTaxClient: generalTaxClient.toFixed(2),
+                //     oneTax: oneTax.toFixed(2),
+                //     generalFinalPayMonth: generalFinalPayMonth.toFixed(2)
+                // }
+
                 jsonData[i] = monthToPay
 
                 if (!i) {
@@ -94,14 +114,18 @@ $(document).ready(function () {
                     tr.appendChild(td)
                 }
             }
+
+            // let lastTableRow = document.createElement('TR')
+            // table.appendChild(lastTableRow)
+            // for (j=0; j<6; j++) {
+            //     let lastTd = document.createElement('TD')
+            //     lastTableRow.appendChild(lastTd)
+            //     lastTd.innerHTML = lastRowObj[Object.keys(lastRowObj)[j]]
+            // }
         }
         leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
+        setTimeout(hideSpinner, 980)
     })
-
-    setTimeout(function hideSpinner() {
-        loadingDiv.style.visibility = 'hidden';
-    }, 1100)
-
 
     arrowBack.addEventListener('click', function () {
         popup.classList.remove('pop-active')
@@ -132,3 +156,6 @@ $(document).ready(function () {
         resultBlock.classList.remove('active');
     });
 })
+
+
+
