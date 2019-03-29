@@ -9,8 +9,6 @@ button.addEventListener('click', function () {
     // var showResult = document.querySelector('.result')
     var armMonth = document.querySelector('#arm-month')
     var onceTax = document.querySelector('#once-tax').value
-    console.log(onceTax);
-    var result = 0;
 
     function leasingCalculate(startPrise, termLeasing, tax, firstPrice, armMonth, onceTax) {
 
@@ -33,7 +31,6 @@ button.addEventListener('click', function () {
                     return paymentMonth
                 }
             }
-            // console.log(payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2));
 
             if (i) {
                 oneTax = 0
@@ -48,6 +45,10 @@ button.addEventListener('click', function () {
                 finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2)
             }
 
+            if (!i) {
+                monthToPay.paymentMonth = (payMonth + firstPay).toFixed(2)
+            }
+
             let tr = document.createElement('TR')
             table.appendChild(tr)
             for (j=0; j<6; j++) {
@@ -55,17 +56,11 @@ button.addEventListener('click', function () {
                 td.innerHTML = monthToPay[Object.keys(monthToPay)[j]]
                 tr.appendChild(td)
             }
-
-            console.log(monthToPay);
         }
-
         resultBlock.appendChild(table)
     }
-
     leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
     resultBlock.classList.add('active')
-
-
 })
 
 

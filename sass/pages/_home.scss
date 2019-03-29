@@ -105,19 +105,13 @@ select {
 .result-block {
   position: absolute;
   bottom: -200px;
-  width: 91%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 70px;
-  border: 1px solid #a5a5a5;
   padding: 20px;
   opacity: 0;
   transition: all 1.5s;
-
-  .result {
-    padding-right: 50px;
-    font-weight: 600;
-  }
 }
 
 .active {
@@ -135,10 +129,6 @@ tr {
 }
 
 td {
-  width: 100px;
+  width: 200px;
   border-right: 1px solid grey;
-}
-
-td {
-
 }
