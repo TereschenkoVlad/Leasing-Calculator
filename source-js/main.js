@@ -1,7 +1,9 @@
 var button = document.querySelector('button');
 var form = document.querySelector('form');
 var resultBlock = document.querySelector('.result-block')
+let jsonData = []
 button.addEventListener('click', function () {
+    jsonData = []
     var startPrice = document.getElementById('how-much-cost').value;
     var termLeasing = document.getElementById('term-leasing').value;
     var tax = document.getElementById('leasing-procent').value;
@@ -47,13 +49,16 @@ button.addEventListener('click', function () {
             }
 
             let monthToPay = {
-                numberOfMonth: i + 1,
-                laseObj: (+needToPay).toFixed(2),
-                paymentMonth: (+payMonth).toFixed(2),
-                taxClient: (+needToPay / 100 * taxMounthC).toFixed(2),
-                taxOne: oneTax,
-                finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2)
+                numberOfMonth: (i + 1).toString(),
+                laseObj: (+needToPay).toFixed(2).toString(),
+                paymentMonth: (+payMonth).toFixed(2).toString(),
+                taxClient: (+needToPay / 100 * taxMounthC).toFixed(2).toString(),
+                taxOne: oneTax.toString(),
+                finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2).toString()
             }
+
+            jsonData[i] = monthToPay
+            console.log(jsonData);
 
             if (!i) {
                 monthToPay.paymentMonth = (payMonth + firstPay).toFixed(2)
@@ -67,19 +72,30 @@ button.addEventListener('click', function () {
                 tr.appendChild(td)
             }
         }
+
+
     }
     leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
     resultBlock.classList.add('active')
-    $(document).ready(function(){
-        $('.single-item-rtl').slick({
-            dots: false,
-            infinite: false,
-            speed: 300,
-            slidesToShow: 1,
-            adaptiveHeight: false
-        });
-    });
 })
+
+function renderPDF () {
+    return printJS({
+        printable: jsonData,
+        properties: [
+            { field: 'numberOfMonth', displayName: 'Місяць'},
+            { field: 'laseObj', displayName: 'Вартість об\'єкту'},
+            { field: 'paymentMonth', displayName: 'Повернення вартості об\'єкту'},
+            { field: 'taxClient', displayName: 'Винагорода лізингодавця'},
+            { field: 'taxOne', displayName: 'Комісія'},
+            { field: 'finalMonthPay', displayName: 'Виплати в місяць'}
+        ],
+        type: 'json'
+    })
+}
+
+let pdfDwnld = document.querySelector('#pdf')
+pdfDwnld.addEventListener('click', renderPDF)
 
 
 form.addEventListener('submit', function (event) {
@@ -90,7 +106,6 @@ var inputsContainer = document.querySelector('.inputs-container');
 
 inputsContainer.addEventListener('click', function () {
     resultBlock.classList.remove('active');
-    console.log(2222)
 });
 
 
