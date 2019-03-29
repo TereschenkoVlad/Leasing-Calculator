@@ -16,7 +16,18 @@ button.addEventListener('click', function () {
         var firstPay = startPrise / 100 * firstPrice;
         var payMonth = (startPrise - firstPay) / termLeasing
         var needToPay = startPrise
-        let table = document.querySelector('table')
+        resultBlock.innerHTML = ''
+        let table = document.createElement('TABLE')
+        table.setAttribute('class', 'responstable')
+        let firstTr = document.createElement('TR')
+        resultBlock.appendChild(table)
+        table.appendChild(firstTr)
+        let tableNames = ['Місяць', "Вартість об'єкту", "Повернення вартості об'єкту", 'Винагорода лізингодавця', 'Комісія', 'Виплати в місяць']
+        for (m=0; m<6; m++) {
+            let th = document.createElement('TH')
+            th.innerText = tableNames[m]
+            firstTr.appendChild(th)
+        }
         for (let i=0; i<termLeasing; i++) {
             function payment (startPrise, firstPay, oneTax, taxMounthC, payMonth) {
                 var paymentMonth = 0;
