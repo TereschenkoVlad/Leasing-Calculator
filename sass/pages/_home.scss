@@ -96,6 +96,7 @@ select {
     background-color: bisque;
     border-radius: 8px;
     padding: 10px 15px;
+    cursor: pointer;
     outline: none;
     &:active {
       box-shadow: inset 1.5px 1.5px 1px #888888;
@@ -104,21 +105,58 @@ select {
 }
 
 .result-block {
-  //position: absolute;
-  //bottom: 0;
-  //left: 0;
-  width: 75%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 60%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   padding: 20px;
   opacity: 0;
   transition: all 1.5s;
+
+  @media (max-width: 992px) {
+    width: 90%;
+    text-align: center;
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(51, 51, 51, .6);
+  transition: all 1.2s ease-in-out;
+  opacity: 0;
+}
+
+.pop-active {
+  left: 0;
+  opacity: 1;
+}
+
+.arrow-back {
+  position: absolute;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%) rotate(180deg);
+  font-size: 40px;
+  padding: 80px 25px;
+  transition: all 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(234, 243, 243);
+  }
 }
 
 .active {
   opacity: 1;
-  transition: all 1.5s;
+  transition: all 0.5s;
   //transform: translate(-50%, -50%);
 }
 
@@ -228,31 +266,33 @@ $table-header-border: 1px solid #FFF;
 // General styles
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif !important;
   color: #024457;
   background: #f2f2f2;
 }
 
 h1 {
-  font-family: Verdana;
   font-weight: normal;
   color: #024457;
   span {color: #167F92;}
 }
 
 #pdf {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  color: #ffffff;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   width: 120px;
   padding: 15px 10px;
-  margin: 0 auto;
   border: 1px solid #167F92;
   border-radius: 8px;
   font-weight: bold;
   transition: all 0.3s;
+  background-color: #167F92;
   cursor: pointer;
-  margin-bottom: 80px;
-  margin-top: 50px;
 
   &:hover {
     color: #ffffff;
