@@ -41,7 +41,7 @@ $(document).ready(function () {
             var taxMounthC = tax / 12;
             var oneTax = (startPrise / 100 * onceTax);
             var firstPay = startPrise / 100 * firstPrice;
-            var payMonth = (startPrise - firstPay) / termLeasing
+            var payMonth = (startPrise - firstPay) / +termLeasing
             var needToPay = startPrise
             resultBlock.innerHTML = ''
             let table = document.createElement('TABLE')
@@ -60,11 +60,11 @@ $(document).ready(function () {
                     var paymentMonth = 0;
                     if (i === 0) {
                         paymentMonth = firstPay + oneTax + (needToPay / 100 * taxMounthC) + payMonth
-                        needToPay = startPrise - paymentMonth;
+                        needToPay = startPrise - payMonth - firstPay;
                         return paymentMonth;
                     } else  {
                         paymentMonth = payMonth + (needToPay / 100 * taxMounthC)
-                        needToPay -= paymentMonth
+                        needToPay -= payMonth
                         return paymentMonth
                     }
                 }
@@ -74,12 +74,12 @@ $(document).ready(function () {
                 }
 
                 let monthToPay = {
-                    numberOfMonth: (i + 1).toString(),
-                    laseObj: (+needToPay).toFixed(2).toString(),
-                    paymentMonth: (+payMonth).toFixed(2).toString(),
-                    taxClient: (+needToPay / 100 * taxMounthC).toFixed(2).toString(),
+                    numberOfMonth: (i + 1),
+                    laseObj: (+needToPay).toFixed(2),
+                    paymentMonth: (+payMonth).toFixed(2),
+                    taxClient: (+needToPay / 100 * taxMounthC).toFixed(2),
                     taxOne: oneTax.toString(),
-                    finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2).toString()
+                    finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2)
                 }
 
                 // let generalPayManth
