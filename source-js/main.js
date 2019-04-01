@@ -162,8 +162,8 @@ $(document).ready(function () {
     arrowBack.addEventListener('click', function () {
         popup.classList.remove('pop-active')
         return setTimeout(() => {
-            $("html, body").animate({ scrollTop: 0 }, 700)
-        }, 200)
+            $("html, body").animate({ scrollTop: 0 }, 600)
+        }, 500)
     })
 
     function renderPDF () {
