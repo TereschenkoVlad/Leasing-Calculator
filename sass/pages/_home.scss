@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   position: relative;
+  box-sizing: border-box;
 }
 .page-title {
   position: relative;
@@ -105,17 +106,18 @@ select {
 }
 
 .result-block {
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: 15%;
   left: 50%;
-  transform: translate(-50%, -60%);
-  width: 70%;
-  margin: 0 auto;
+  transform: translateX(-50%);
+  width: calc(100% - 10%);
   display: flex;
   justify-content: space-between;
   padding: 20px;
   opacity: 0;
   transition: all 1.5s;
+  margin-bottom: 75px;
+  box-sizing: border-box;
 
   @media (max-width: 992px) {
     width: 90%;
@@ -128,7 +130,7 @@ select {
   top: 0;
   left: -9999px;
   width: 100vw;
-  height: 100vh;
+  height: auto;
   background-color: rgba(51, 51, 51, .6);
   transition: all 1.2s ease-in-out;
   opacity: 0;
@@ -157,7 +159,6 @@ select {
 .active {
   opacity: 1;
   transition: all 0.5s;
-  //transform: translate(-50%, -50%);
 }
 
 
@@ -284,8 +285,7 @@ h1 {
 }
 
 #pdf {
-  position: absolute;
-  bottom: 60px;
+  position: relative;
   left: 50%;
   color: #167F92;
   transform: translateX(-50%);
@@ -297,10 +297,9 @@ h1 {
   border-radius: 8px;
   font-weight: bold;
   transition: all 0.3s;
-  //background-color: #167F92;
-  //background-position: -100%;
   cursor: pointer;
   overflow: hidden;
+  margin-bottom: 78px;
 
   &:after {
     content: '';
