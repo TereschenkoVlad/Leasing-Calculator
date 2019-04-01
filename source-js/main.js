@@ -27,6 +27,11 @@ $(document).ready(function () {
 
     let arrowBack = document.createElement('I')
 
+    setTimeout(() => {
+        arrowBack.setAttribute('class', 'arrow-back fas fa-arrow-right')
+        popup.appendChild(arrowBack)
+    }, 1500)
+
     let pdfDwnld = document.querySelector('#pdf')
     pdfDwnld.addEventListener('click', renderPDF)
 
@@ -36,15 +41,15 @@ $(document).ready(function () {
         loadingDiv.style.visibility = 'hidden';
     }
 
+    let detailsCont = document.createElement('DIV')
+    detailsCont.classList.add('details-container')
+
     button.addEventListener('click', function () {
         loadingDiv.style.visibility = 'visible';
 
         popup.classList.add('pop-active')
         resultBlock.classList.add('active')
         pdfDwnld.style.visibility = 'visible'
-
-        arrowBack.setAttribute('class', 'arrow-back fas fa-arrow-right')
-        popup.appendChild(arrowBack)
 
         jsonData = []
 
@@ -137,7 +142,7 @@ $(document).ready(function () {
                 paymentMonth: +generalPayMonth.toFixed(2),
                 taxClient: +generalTaxClient.toFixed(2),
                 taxOne: (startPrise / 100 * onceTax).toFixed(2),
-                finalMonthPay: +generalFinalPayMonth
+                finalMonthPay: +generalFinalPayMonth.toFixed(2)
             }
 
             jsonData[jsonData.length] = lastRowObj
@@ -151,11 +156,14 @@ $(document).ready(function () {
             }
         }
         leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
-        setTimeout(hideSpinner, 980)
+        setTimeout(hideSpinner, 500)
     })
 
     arrowBack.addEventListener('click', function () {
         popup.classList.remove('pop-active')
+        return setTimeout(() => {
+            $("html, body").animate({ scrollTop: 0 }, 700)
+        }, 200)
     })
 
     function renderPDF () {

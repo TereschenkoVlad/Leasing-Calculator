@@ -14,78 +14,77 @@
 <body>
 
 <section class="welcome-main-section">
-    <div class="single-item-rtl">
-        <div class="my-container">
-            <div class="calculator">
-                <h1 class="page-title">Лізинговий калькулятор</h1>
-                <form>
-                    <label>
-                        Тип об*єкту лізингу:
-                        <select>
-                            <option>Будівлі, споруди, земля</option>
-                            <option>автотранспорт, е/м прилади</option>
-                            <option>інше</option>
-                            <option>комп*ютери, телефони</option>
-                        </select>
+    <div class="my-container">
+        <div class="calculator">
+            <h1 class="page-title">Лізинговий калькулятор</h1>
+            <form>
+                <label>
+                    Тип об*єкту лізингу:
+                    <select>
+                        <option>Будівлі, споруди, земля</option>
+                        <option>автотранспорт, е/м прилади</option>
+                        <option>інше</option>
+                        <option>комп*ютери, телефони</option>
+                    </select>
+                </label>
+
+                <div class="inputs-container">
+                    <label for="term-leasing">
+                        Термін дії лізингу:
+                        <input type="number" value="12" placeholder="12" id="term-leasing" required>
+                        <span>місяців</span>
                     </label>
 
-                    <div class="inputs-container">
-                        <label for="term-leasing">
-                            Термін дії лізингу:
-                            <input type="number" value="12" placeholder="12" id="term-leasing" required>
-                            <span>місяців</span>
-                        </label>
+                    <label for="how-much-cost">
+                        Армотизація місячна:
+                        <input type="number" value="0.7" id="arm-month" disabled required>
+                        <span>%</span>
+                    </label>
+                    <label for="term-leasing">
+                        Одноразова комісія:
+                        <input type="number" value="1" placeholder="1" id="once-tax" required>
+                        <span>%</span>
+                    </label>
 
-                        <label for="how-much-cost">
-                            Армотизація місячна:
-                            <input type="number" value="0.7" placeholder="3" id="arm-month" required>
-                            <span>%</span>
-                        </label>
-                        <label for="term-leasing">
-                            Одноразова комісія:
-                            <input type="number" value="1" placeholder="1" id="once-tax" required>
-                            <span>%</span>
-                        </label>
+                    <label for="how-much-cost">
+                        Вартість об*єкту лізингу:
+                        <input type="number" value="50000" placeholder="50000" id="how-much-cost" required>
+                        <span>грошових одиниць</span>
+                    </label>
 
-                        <label for="how-much-cost">
-                            Вартість об*єкту лізингу:
-                            <input type="number" value="50000" placeholder="50000" id="how-much-cost" required>
-                            <span>грошових одиниць</span>
-                        </label>
+                    <label for="leasing-procent">
+                        Лізинговий процент:
+                        <input type="number" value="10" placeholder="10" id="leasing-procent" required>
+                        <span>річних %</span>
+                    </label>
 
-                        <label for="leasing-procent">
-                            Лізинговий процент:
-                            <input type="number" value="10" placeholder="10" id="leasing-procent" required>
-                            <span>річних %</span>
-                        </label>
+                    <label for="first-price">
+                        Первинний внесок:
+                        <input type="number" value="50" placeholder="50" id="first-price" required>
+                        <span>%</span>
+                    </label>
+                </div>
 
-                        <label for="first-price">
-                            Первинний внесок:
-                            <input type="number" value="50" placeholder="50" id="first-price" required>
-                            <span>%</span>
-                        </label>
-                    </div>
-
-                    <div class="extra-option">
-                        <label for="fast-amortization">
-                            <input type="checkbox" id="fast-amortization">
-                            Ускоренная амортизация
-                        </label>
-                    </div>
-                    <div class="last-submit-line">
-                        <button>Розрахувати</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="popup">
-            <div class="result-block">
-            </div>
-            <span id="pdf" style="visibility: hidden;">
-                Print
-            </span>
+                <div class="extra-option">
+                    <label for="fast-amortization">
+                        <input type="checkbox" id="fast-amortization">
+                        Ускоренная амортизация
+                    </label>
+                </div>
+                <div class="last-submit-line">
+                    <button>Розрахувати</button>
+                </div>
+            </form>
         </div>
     </div>
+    <div class="popup">
+        <div class="result-block">
+        </div>
+        <span id="pdf" style="visibility: hidden;">
+                Print
+            </span>
+    </div>
+
 </section>
 <div id="loading" class="loading">
     Loading&#8230;

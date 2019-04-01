@@ -1,6 +1,11 @@
+html {
+  cursor:url(../plain-microphone.png), auto;
+}
+
 body {
   font-family: sans-serif;
   position: relative;
+  cursor:url(../plain-microphone.png), auto;
   box-sizing: border-box;
 }
 .page-title {
@@ -48,6 +53,12 @@ input {
       margin-top: 5px;
       border: 2px solid #236312;
     }
+  }
+
+  input:disabled {
+    background-color: #ffffff;
+    border: 1px solid rgb(238, 238, 238);
+    box-shadow: none;
   }
 
   span {
@@ -106,33 +117,58 @@ select {
 }
 
 .result-block {
-  position: relative;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  margin: 40px auto 75px auto;
+  width: 100%;
+  max-width: 1200px;
   opacity: 0;
   transition: all 1.5s;
-  margin-bottom: 75px;
-  box-sizing: border-box;
 
   @media (max-width: 992px) {
     width: 90%;
     text-align: center;
+  }
+
+  @media (max-width: 840px) {
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar
+    {
+      width: 10px;
+      height: 7px;
+      cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      border-radius: 10px;
+      background-image: -webkit-gradient(linear,
+              left bottom,
+              left top,
+              color-stop(0.50, rgb(122,153,217)),
+              color-stop(0.5, rgb(22,127,146)));
+    }
   }
 }
 
 .popup {
   position: absolute;
   top: 0;
-  left: -9999px;
-  width: 100vw;
+  left: -2999px;
+  width: 100%;
   height: auto;
   background-color: rgba(51, 51, 51, .6);
   transition: all 1.2s ease-in-out;
   opacity: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .pop-active {
@@ -141,14 +177,18 @@ select {
 }
 
 .arrow-back {
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 30px;
   transform: translateY(-50%) rotate(180deg);
   font-size: 40px;
   padding: 80px 25px;
   transition: all 0.3s;
-  cursor: pointer;
+  cursor: w-resize;
+
+  @media (max-width: 992px) {
+    right: 0;
+  }
 
   &:hover {
     background-color: rgba(197, 233, 243, 0.3);
@@ -197,6 +237,11 @@ $table-header-border: 1px solid #FFF;
     color: $text-color;
     border-radius: $border-radius;
     border: $outer-border;
+
+    @media (max-width: 840px) {
+      max-width: 830px;
+      min-width: 830px;
+    }
 
     tr {
       border: $cell-border;
