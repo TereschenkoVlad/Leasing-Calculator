@@ -179,7 +179,7 @@ select {
 .arrow-back {
   position: fixed;
   top: 50%;
-  right: 30px;
+  right: 10px;
   transform: translateY(-50%) rotate(180deg);
   font-size: 40px;
   padding: 80px 25px;
@@ -439,4 +439,46 @@ h1 {
 @keyframes spinner {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.details-container {
+  max-width: 1200px;
+  margin: 0 auto 40px auto;
+  transition: all 0.5s;
+
+  .title-details {
+    position: relative;
+    padding: 15px 100px 15px 20px;
+    border: 1.5px solid #024457;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:after {
+      content: '+';
+      font-size: 35px;
+      font-weight: 300;
+      position: absolute;
+      top: 4px;
+      right: 15px;
+    }
+  }
+
+  .details-content {
+    width: 294px;
+    border: 1.5px solid #024457;
+    border-top: none;
+    transition: all 1s;
+    margin-top: 15px;
+    padding: 10px 20px 15px 20px;
+    background-color: #167F92;
+
+    opacity: 0;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      color: #ffffff;
+    }
+  }
 }

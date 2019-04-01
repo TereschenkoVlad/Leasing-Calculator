@@ -5,9 +5,19 @@ $(document).ready(function () {
     let popup = document.querySelector('.popup')
     let jsonData = []
 
+    let isOpen = false
+
+    let detailsCont = document.createElement('DIV')
+    detailsCont.classList.add('details-container')
+
+    popup.appendChild(detailsCont)
+
+    let titleDetails = document.createElement('SPAN')
+    titleDetails.classList.add('title-details')
+    titleDetails.innerHTML = 'Отримати більше інформації'
+    detailsCont.appendChild(titleDetails)
 
     let selectObj = document.querySelector('select')
-
     selectObj.addEventListener('change', () => {
         let monthArmFild = document.getElementById('arm-month')
         switch (selectObj.value) {
@@ -40,9 +50,6 @@ $(document).ready(function () {
     function hideSpinner() {
         loadingDiv.style.visibility = 'hidden';
     }
-
-    let detailsCont = document.createElement('DIV')
-    detailsCont.classList.add('details-container')
 
     button.addEventListener('click', function () {
         loadingDiv.style.visibility = 'visible';
@@ -180,6 +187,37 @@ $(document).ready(function () {
             type: 'json'
         })
     }
+
+    titleDetails.addEventListener('click', () => {
+        let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'повна винагорода лізингодавця:', 'Комісія']
+        let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
+        if (isOpen === false) {
+            titleDetails.style.borderBottomWidth = '0'
+            let detailsContent = document.createElement('UL')
+            detailsContent.classList.add('details-content')
+            for (let i=0; i<4; i++) {
+                let li = document.createElement('LI')
+                let spanLeft = document.createElement('SPAN')
+                spanLeft.innerText = extraInfoTitles[i]
+                spanLeft.classList.add('span-left')
+                let spanRight = document.createElement('SPAN')
+                spanRight.innerText = extraInfoValue[i]
+                spanRight.classList.add('span-right')
+                li.appendChild(spanLeft)
+                li.appendChild(spanRight)
+                detailsContent.appendChild(li)
+
+                detailsCont.appendChild(detailsContent)
+                detailsContent.style.opacity = '1'
+            }
+        } else  {
+            document.querySelector('.details-content').remove()
+            titleDetails.style.borderBottomWidth = '1.5px'
+        }
+
+
+        isOpen = !isOpen
+    })
 
     form.addEventListener('submit', function (event) {
         event.preventDefault()
