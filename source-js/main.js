@@ -5,6 +5,26 @@ $(document).ready(function () {
     let popup = document.querySelector('.popup')
     let jsonData = []
 
+
+    let selectObj = document.querySelector('select')
+
+    selectObj.addEventListener('change', () => {
+        let monthArmFild = document.getElementById('arm-month')
+        switch (selectObj.value) {
+            case 'Будівлі, споруди, земля' :
+                monthArmFild.value = '0.7'
+                break
+            case 'автотранспорт, е/м прилади' :
+                monthArmFild.value = '3.33'
+                break
+            case 'комп*ютери, телефони' :
+                monthArmFild.value = '5'
+                break
+            default :
+                monthArmFild.value = '2'
+        }
+    })
+
     let arrowBack = document.createElement('I')
 
     let pdfDwnld = document.querySelector('#pdf')
