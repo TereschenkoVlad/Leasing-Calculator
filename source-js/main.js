@@ -30,7 +30,7 @@ $(document).ready(function () {
     setTimeout(() => {
         arrowBack.setAttribute('class', 'arrow-back fas fa-arrow-right')
         popup.appendChild(arrowBack)
-    }, 1500)
+    }, 2000)
 
     let pdfDwnld = document.querySelector('#pdf')
     pdfDwnld.addEventListener('click', renderPDF)
