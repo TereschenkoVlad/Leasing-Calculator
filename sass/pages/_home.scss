@@ -251,6 +251,12 @@ $table-header-border: 1px solid #FFF;
         padding: 15px;
       }
     }
+
+    tr:last-child {
+      td {
+        margin-top: 20px;
+      }
+    }
   }
 }
 

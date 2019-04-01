@@ -31,33 +31,11 @@ gulp.task('styles', function () {
         .pipe(gulp.dest('./css'));
 });
 
-gulp.task('lib-js', function() {
-    return gulp.src(LIB_JS_INCLUDE_PATHS)
-        .pipe(plumber({ errorHandler: handleError }))
-        .pipe(sourcemaps.init())
-        .pipe(babel({compact: true}))
-        .pipe(concat('app.js'))
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./js'));
-});
-gulp.task('js', function() {
-    return gulp.src('./source-js/**/*.js')
-        .pipe(plumber({ errorHandler: handleError }))
-        .pipe(sourcemaps.init())
-        .pipe(babel({compact: true}))
-        .pipe(concat('main.js'))
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./js'));
-});
-
-gulp.task('watch', ['styles', 'js'], function () {
+gulp.task('watch', ['styles'], function () {
     gulp.watch('./sass/**/*.scss', ['styles']);
-    gulp.watch('./source-js/*.js', ['js']);
 });
 
-gulp.task('default', ['lib-js', 'styles', 'js'], function () {
+gulp.task('default', ['styles'], function () {
 
 });
 

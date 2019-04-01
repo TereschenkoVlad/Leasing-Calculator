@@ -28,6 +28,10 @@ $(document).ready(function () {
 
         jsonData = []
 
+        let generalPayMonth = 0
+        let generalTaxClient = 0
+        let generalFinalPayMonth = 0
+
         let lastRowObj = {}
         var startPrice = document.getElementById('how-much-cost').value;
         var termLeasing = document.getElementById('term-leasing').value;
@@ -49,6 +53,7 @@ $(document).ready(function () {
             let firstTr = document.createElement('TR')
             resultBlock.appendChild(table)
             table.appendChild(firstTr)
+
             let tableNames = ['Місяць', "Вартість об'єкту", "Повернення вартості об'єкту", 'Винагорода лізингодавця', 'Комісія', 'Виплати в місяць']
             for (m=0; m<6; m++) {
                 let th = document.createElement('TH')
@@ -58,15 +63,14 @@ $(document).ready(function () {
             for (let i=0; i<termLeasing; i++) {
                 function payment (startPrise, firstPay, oneTax, taxMounthC, payMonth) {
                     var paymentMonth = 0;
-                    if (i === 0) {
+                    if (!i) {
                         paymentMonth = firstPay + oneTax + (needToPay / 100 * taxMounthC) + payMonth
                         needToPay = startPrise - payMonth - firstPay;
                         return paymentMonth;
-                    } else  {
-                        paymentMonth = payMonth + (needToPay / 100 * taxMounthC)
-                        needToPay -= payMonth
-                        return paymentMonth
                     }
+                    paymentMonth = payMonth + (needToPay / 100 * taxMounthC)
+                    needToPay -= payMonth
+                    return paymentMonth
                 }
 
                 if (i) {
@@ -76,29 +80,11 @@ $(document).ready(function () {
                 let monthToPay = {
                     numberOfMonth: (i + 1),
                     laseObj: (+needToPay).toFixed(2),
-                    paymentMonth: (+payMonth).toFixed(2),
-                    taxClient: (+needToPay / 100 * taxMounthC).toFixed(2),
-                    taxOne: oneTax.toString(),
-                    finalMonthPay: payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2)
+                    paymentMonth: (payMonth).toFixed(2),
+                    taxClient: (needToPay / 100 * taxMounthC).toFixed(2),
+                    taxOne: oneTax,
+                    finalMonthPay: +payment(startPrise, firstPay, oneTax, taxMounthC, payMonth).toFixed(2)
                 }
-
-                // let generalPayManth
-                // generalPayManth += payMonth
-                //
-                // let generalTaxClient
-                // generalTaxClient += (needToPay * 100 * taxMounthC)
-                //
-                // let generalFinalPayMonth
-                // generalFinalPayMonth += payment(startPrise, firstPay, oneTax, taxMounthC, payMonth)
-
-                // lastRowObj = {
-                //     final: 'Сумма',
-                //     2: '',
-                //     generalPayManth: generalPayManth.toFixed(2),
-                //     generalTaxClient: generalTaxClient.toFixed(2),
-                //     oneTax: oneTax.toFixed(2),
-                //     generalFinalPayMonth: generalFinalPayMonth.toFixed(2)
-                // }
 
                 jsonData[i] = monthToPay
 
@@ -113,15 +99,36 @@ $(document).ready(function () {
                     td.innerHTML = monthToPay[Object.keys(monthToPay)[j]]
                     tr.appendChild(td)
                 }
+
+                if (!i) {
+                    generalPayMonth = generalPayMonth + payMonth + firstPay
+                } else  {
+                    generalPayMonth = generalPayMonth + payMonth
+                }
+
+                generalTaxClient = generalTaxClient + (needToPay / 100 * taxMounthC)
+
+                generalFinalPayMonth += monthToPay.finalMonthPay
             }
 
-            // let lastTableRow = document.createElement('TR')
-            // table.appendChild(lastTableRow)
-            // for (j=0; j<6; j++) {
-            //     let lastTd = document.createElement('TD')
-            //     lastTableRow.appendChild(lastTd)
-            //     lastTd.innerHTML = lastRowObj[Object.keys(lastRowObj)[j]]
-            // }
+            lastRowObj = {
+                numberOfMonth: 'Сумма',
+                laseObj: '',
+                paymentMonth: +generalPayMonth.toFixed(2),
+                taxClient: +generalTaxClient.toFixed(2),
+                taxOne: (startPrise / 100 * onceTax).toFixed(2),
+                finalMonthPay: +generalFinalPayMonth
+            }
+
+            jsonData[jsonData.length] = lastRowObj
+
+            let lastTableRow = document.createElement('TR')
+            table.appendChild(lastTableRow)
+            for (j=0; j<6; j++) {
+                let lastTd = document.createElement('TD')
+                lastTd.innerHTML = lastRowObj[Object.keys(lastRowObj)[j]]
+                lastTableRow.appendChild(lastTd)
+            }
         }
         leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
         setTimeout(hideSpinner, 980)
