@@ -445,9 +445,13 @@ h1 {
   max-width: 1200px;
   margin: 0 auto 40px auto;
   transition: all 0.5s;
+  overflow: hidden;
+  position: relative;
+  min-height: 195px;
 
   .title-details {
     position: relative;
+    z-index: 5;
     padding: 15px 100px 15px 20px;
     border: 1.5px solid #024457;
     cursor: pointer;
@@ -464,11 +468,13 @@ h1 {
   }
 
   .details-content {
-    width: 294px;
+    position: absolute;
+    top: -999px;
+    width: 295px;
     border: 1.5px solid #024457;
     border-top: none;
     transition: all 1s;
-    margin-top: 15px;
+    margin-top: 30px;
     padding: 10px 20px 15px 20px;
     background-color: #167F92;
 

@@ -210,8 +210,10 @@ $(document).ready(function () {
                 detailsCont.appendChild(detailsContent)
                 detailsContent.style.opacity = '1'
             }
+            detailsContent.style.top = '0';
         } else  {
-            document.querySelector('.details-content').remove()
+            // document.querySelector('.details-content').remove()
+            document.querySelector('.details-content').style.top = '-999px'
             titleDetails.style.borderBottomWidth = '1.5px'
         }
 
