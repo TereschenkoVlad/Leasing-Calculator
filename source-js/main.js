@@ -72,6 +72,10 @@ $(document).ready(function () {
         var firstPrice = document.getElementById('first-price').value;
         var armMonth = document.querySelector('#arm-month')
         var onceTax = document.querySelector('#once-tax').value
+        let fastAmortization = document.getElementById('fast-amortization')
+        if (fastAmortization.checked) {
+            termLeasing = termLeasing - (+termLeasing / 100 * 20).toFixed(0)
+        }
 
         function leasingCalculate(startPrise, termLeasing, tax, firstPrice, armMonth, onceTax) {
 
@@ -190,7 +194,7 @@ $(document).ready(function () {
     }
 
    function getExtraInfo () {
-       let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'повна винагорода лізингодавця:', 'Комісія']
+       let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'Повна винагорода лізингодавця:', 'Комісія']
        let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
 
        titleDetails.style.borderBottomWidth = '0'

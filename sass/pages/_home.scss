@@ -1,12 +1,28 @@
-html {
-  cursor:url(../plain-microphone.png), auto;
-}
-
 body {
   font-family: sans-serif;
   position: relative;
-  cursor:url(../plain-microphone.png), auto;
   box-sizing: border-box;
+
+  &::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 10px;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    background-image: url("../calculator-icon.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
 }
 .page-title {
   position: relative;
@@ -19,7 +35,6 @@ body {
     width: 100%;
     height: 1px;
     max-width: 700px;
-    background-color: #eeeeee;
   }
 }
 
