@@ -14,6 +14,7 @@ $(document).ready(function () {
 
     let titleDetails = document.createElement('SPAN')
     titleDetails.classList.add('title-details')
+    titleDetails.classList.add('plus')
     titleDetails.innerHTML = 'Отримати більше інформації'
     detailsCont.appendChild(titleDetails)
 
@@ -188,33 +189,65 @@ $(document).ready(function () {
         })
     }
 
-    titleDetails.addEventListener('click', () => {
-        let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'повна винагорода лізингодавця:', 'Комісія']
-        let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
-        if (isOpen === false) {
-            titleDetails.style.borderBottomWidth = '0'
-            let detailsContent = document.createElement('UL')
-            detailsContent.classList.add('details-content')
-            for (let i=0; i<4; i++) {
-                let li = document.createElement('LI')
-                let spanLeft = document.createElement('SPAN')
-                spanLeft.innerText = extraInfoTitles[i]
-                spanLeft.classList.add('span-left')
-                let spanRight = document.createElement('SPAN')
-                spanRight.innerText = extraInfoValue[i]
-                spanRight.classList.add('span-right')
-                li.appendChild(spanLeft)
-                li.appendChild(spanRight)
-                detailsContent.appendChild(li)
+   function getExtraInfo () {
+       let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'повна винагорода лізингодавця:', 'Комісія']
+       let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
 
-                detailsCont.appendChild(detailsContent)
-                detailsContent.style.opacity = '1'
+       titleDetails.style.borderBottomWidth = '0'
+       let detailsContent = document.createElement('UL')
+       detailsContent.classList.add('details-content')
+
+       for (let i=0; i<4; i++) {
+           let li = document.createElement('LI')
+           let spanLeft = document.createElement('SPAN')
+           spanLeft.innerText = extraInfoTitles[i]
+           spanLeft.classList.add('span-left')
+           let spanRight = document.createElement('SPAN')
+           spanRight.innerText = extraInfoValue[i]
+           spanRight.classList.add('span-right')
+           li.appendChild(spanLeft)
+           li.appendChild(spanRight)
+           detailsContent.appendChild(li)
+
+           detailsContent.style.opacity = '1'
+       }
+
+       return detailsContent
+   }
+
+   let count = 0
+
+    titleDetails.addEventListener('click', () => {
+        if (isOpen === false) {
+            if (titleDetails.classList.contains('plus')) {
+                titleDetails.classList.remove('plus')
             }
+            titleDetails.classList.add('minus')
+            window.scroll({
+                bottom: -200,
+                left: 0,
+                behavior: 'smooth'
+            });
+            if (count === 0) {
+                detailsCont.appendChild(getExtraInfo())
+                let extrContent = document.querySelector('.details-content')
+                extrContent.classList.add('extra-info-active')
+                count++
+            } else {
+                let extrContent = document.querySelector('.details-content')
+                extrContent.classList.add('extra-info-active')
+            }
+
+            titleDetails.style.borderBottomWidth = '0'
         } else  {
-            document.querySelector('.details-content').remove()
+            if (titleDetails.classList.contains('minus')) {
+                titleDetails.classList.remove('minus')
+            }
+            titleDetails.classList.add('plus')
+            let extrContent = document.querySelector('.details-content')
+            extrContent.classList.remove('extra-info-active')
             titleDetails.style.borderBottomWidth = '1.5px'
         }
-
 
         isOpen = !isOpen
     })
@@ -229,6 +262,4 @@ $(document).ready(function () {
         resultBlock.classList.remove('active');
     });
 })
-
-
 
