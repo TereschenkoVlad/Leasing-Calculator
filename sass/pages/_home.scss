@@ -482,3 +482,7 @@ h1 {
     }
   }
 }
+
+label[style="backdrop-filter: none"] {
+  color: red !important;
+}
