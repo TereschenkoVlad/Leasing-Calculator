@@ -212,17 +212,21 @@ $(document).ready(function () {
 
     arrowBack.addEventListener('click', function () {
 
-        if (titleDetails.classList.contains('minus')) {
-            titleDetails.classList.remove('minus')
-        }
-        titleDetails.classList.add('plus')
-        let extrContent = document.querySelector('.details-content')
-        extrContent.classList.remove('extra-info-active')
-        titleDetails.style.borderBottomWidth = '1.5px'
+       if (isOpen) {
+           if (titleDetails.classList.contains('minus')) {
+               titleDetails.classList.remove('minus')
+           }
+           titleDetails.classList.add('plus')
+           let extrContent = document.querySelector('.details-content')
+           extrContent.classList.remove('extra-info-active')
+           titleDetails.style.borderBottomWidth = '1.5px'
 
-        if (count === 0) {
-            detailsCont.removeChild(extrContent)
-        }
+           if (count === 0) {
+               detailsCont.removeChild(extrContent)
+           }
+       }
+
+       isOpen = !isOpen
 
         popup.classList.remove('pop-active')
         return setTimeout(() => {
