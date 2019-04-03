@@ -296,32 +296,33 @@ $(document).ready(function () {
     // })
 
     $(window).scroll(function() {
+        let extraInfoClasses = $('#moreInfo i')[0].classList
         if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            $('#moreInfo i')[0].classList.add('fa-arrow-circle-up')
-            $('#moreInfo i')[0].classList.remove('fa-arrow-circle-down')
+            extraInfoClasses.add('fa-arrow-circle-up')
+            extraInfoClasses.remove('fa-arrow-circle-down')
         }
         if (($(window).scrollTop() + $(window).height() + 250) < $(document).height()) {
-            $('#moreInfo i')[0].classList.add('fa-arrow-circle-down')
-            $('#moreInfo i')[0].classList.remove('fa-arrow-circle-up')
+            extraInfoClasses.add('fa-arrow-circle-down')
+            extraInfoClasses.remove('fa-arrow-circle-up')
         }
     })
 
 
     $('#moreInfo').click(function () {
 
-        let scrollArrow = $('#moreInfo i')[0]
-        console.log(scrollArrow);
+        let scrollArrowClasses = $('#moreInfo i')[0].classList
+        console.log(scrollArrowClasses);
 
-        console.log(scrollArrow.classList.contains('fa-arrow-circle-down'));
-        if (scrollArrow.classList.contains('fa-arrow-circle-down')) {
-           scrollArrow.classList.remove('fa-arrow-circle-down')
-           scrollArrow.classList.add('fa-arrow-circle-up')
+        console.log(scrollArrowClasses.contains('fa-arrow-circle-down'));
+        if (scrollArrowClasses.contains('fa-arrow-circle-down')) {
+            scrollArrowClasses.remove('fa-arrow-circle-down')
+            scrollArrowClasses.add('fa-arrow-circle-up')
             $([document.documentElement, document.body]).animate({
                 scrollTop: $('.title-details').offset().top - 210
             }, 1000)
         } else {
-           scrollArrow.classList.remove('fa-arrow-circle-up')
-           scrollArrow.classList.add('fa-arrow-circle-down')
+            scrollArrowClasses.remove('fa-arrow-circle-up')
+            scrollArrowClasses.add('fa-arrow-circle-down')
             $([document.documentElement, document.body]).animate({
                 scrollTop: 0
             }, 1000)
