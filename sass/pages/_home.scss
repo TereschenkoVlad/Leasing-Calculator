@@ -137,7 +137,7 @@ select {
 .result-block {
   display: flex;
   justify-content: space-between;
-  margin: 40px auto 75px auto;
+  margin: 40px auto 65px auto;
   width: 100%;
   max-width: 1200px;
   opacity: 0;
@@ -361,8 +361,8 @@ h1 {
   transition: all 0.3s;
   cursor: pointer;
   overflow: hidden;
-  margin-bottom: 78px;
-
+  //margin-bottom: 220px;
+  margin-bottom: 50px;
   &:after {
     content: '';
     position: absolute;
@@ -461,7 +461,7 @@ h1 {
 .details-container {
   position: relative;
   max-width: 1200px;
-  margin: 0 auto 40px auto;
+  margin: 150px auto 40px auto;
   transition: all 0.5s;
   min-height: 201px;
   overflow: hidden;
@@ -519,7 +519,45 @@ h1 {
   }
 }
 
+#moreInfo {
+  //position: fixed;
+  //bottom: 70px;
+  //left: 50%;
+  //z-index: 9999;
+  //transform: translateX(-50%);
+  //opacity: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 105px;
+  height: 40px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.3s;
+
+  i {
+    font-size: 25px;
+    color: #167F92;
+  }
+}
+
 .extra-info-active {
   top: 0 !important;
 }
 
+
+.bounce {
+   animation: bounces 2s infinite;
+}
+
+@keyframes bounces {
+  0%, 20%, 50%, 80%, 100% {
+     transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}

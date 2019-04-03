@@ -224,9 +224,8 @@ $(document).ready(function () {
            if (count === 0) {
                detailsCont.removeChild(extrContent)
            }
+           isOpen = !isOpen
        }
-
-       isOpen = !isOpen
 
         popup.classList.remove('pop-active')
         return setTimeout(() => {
@@ -283,6 +282,52 @@ $(document).ready(function () {
         }
 
         isOpen = !isOpen
+    })
+
+    // var userScroll = $(document).scrollTop();
+    //
+    // $(window).on('scroll', function() {
+    //     var newScroll = $(document).scrollTop();
+    //     if(userScroll - newScroll > 1 || newScroll - userScroll > 1){
+    //         $('#moreInfo')[0].style.opacity = '1'
+    //     } else {
+    //         $('#moreInfo')[0].style.opacity = '0'
+    //     }
+    // })
+
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            $('#moreInfo i')[0].classList.add('fa-arrow-circle-up')
+            $('#moreInfo i')[0].classList.remove('fa-arrow-circle-down')
+        }
+        if (($(window).scrollTop() + $(window).height() + 250) < $(document).height()) {
+            $('#moreInfo i')[0].classList.add('fa-arrow-circle-down')
+            $('#moreInfo i')[0].classList.remove('fa-arrow-circle-up')
+        }
+    })
+
+
+    $('#moreInfo').click(function () {
+
+        let scrollArrow = $('#moreInfo i')[0]
+        console.log(scrollArrow);
+
+        console.log(scrollArrow.classList.contains('fa-arrow-circle-down'));
+        if (scrollArrow.classList.contains('fa-arrow-circle-down')) {
+           scrollArrow.classList.remove('fa-arrow-circle-down')
+           scrollArrow.classList.add('fa-arrow-circle-up')
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $('.title-details').offset().top - 210
+            }, 1000)
+        } else {
+           scrollArrow.classList.remove('fa-arrow-circle-up')
+           scrollArrow.classList.add('fa-arrow-circle-down')
+            $([document.documentElement, document.body]).animate({
+                scrollTop: 0
+            }, 1000)
+       }
+
+
     })
 
     form.addEventListener('submit', function (event) {
