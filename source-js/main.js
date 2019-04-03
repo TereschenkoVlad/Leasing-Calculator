@@ -7,6 +7,8 @@ $(document).ready(function () {
 
     let isOpen = false
 
+    let count = 0
+
     let detailsCont = document.createElement('DIV')
     detailsCont.classList.add('details-container')
 
@@ -53,8 +55,11 @@ $(document).ready(function () {
     }
 
     let getExtraInfo
+    var payMonth
 
     button.addEventListener('click', function () {
+        count = 0
+
         loadingDiv.style.visibility = 'visible';
 
         popup.classList.add('pop-active')
@@ -84,7 +89,7 @@ $(document).ready(function () {
             var taxMounthC = tax / 12;
             var oneTax = (startPrise / 100 * onceTax);
             var firstPay = startPrise / 100 * firstPrice;
-            var payMonth = (startPrise - firstPay) / +termLeasing
+            payMonth = (startPrise - firstPay) / +termLeasing
             var needToPay = startPrise
             resultBlock.innerHTML = ''
             let table = document.createElement('TABLE')
@@ -172,9 +177,14 @@ $(document).ready(function () {
         leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
         setTimeout(hideSpinner, 500)
 
-         getExtraInfo  = () => {
+
+         getExtraInfo  = (jsonDataExtraObj) => {
             let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'Повна винагорода лізингодавця:', 'Комісія']
-            let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
+             function getNewExtraInfo () {
+                 let extraInfoValue = [payMonth.toFixed(2), jsonDataExtraObj.finalMonthPay, jsonDataExtraObj.taxClient, jsonDataExtraObj.taxOne]
+                 return extraInfoValue
+             }
+             getNewExtraInfo()
 
             titleDetails.style.borderBottomWidth = '0'
             let detailsContent = document.createElement('UL')
@@ -186,7 +196,7 @@ $(document).ready(function () {
                 spanLeft.innerText = extraInfoTitles[i]
                 spanLeft.classList.add('span-left')
                 let spanRight = document.createElement('SPAN')
-                spanRight.innerText = extraInfoValue[i]
+                spanRight.innerText = getNewExtraInfo()[i]
                 spanRight.classList.add('span-right')
                 li.appendChild(spanLeft)
                 li.appendChild(spanRight)
@@ -196,11 +206,24 @@ $(document).ready(function () {
             }
 
             return detailsContent
-        }
+         }
 
     })
 
     arrowBack.addEventListener('click', function () {
+
+        if (titleDetails.classList.contains('minus')) {
+            titleDetails.classList.remove('minus')
+        }
+        titleDetails.classList.add('plus')
+        let extrContent = document.querySelector('.details-content')
+        extrContent.classList.remove('extra-info-active')
+        titleDetails.style.borderBottomWidth = '1.5px'
+
+        if (count === 0) {
+            detailsCont.removeChild(extrContent)
+        }
+
         popup.classList.remove('pop-active')
         return setTimeout(() => {
             $("html, body").animate({ scrollTop: 0 }, 600)
@@ -223,7 +246,6 @@ $(document).ready(function () {
     }
 
 
-   let count = 0
 
     titleDetails.addEventListener('click', () => {
         if (isOpen === false) {
@@ -231,9 +253,8 @@ $(document).ready(function () {
                 titleDetails.classList.remove('plus')
             }
             titleDetails.classList.add('minus')
-
             if (count === 0) {
-                detailsCont.appendChild(getExtraInfo())
+                detailsCont.appendChild(getExtraInfo(jsonData[jsonData.length-1]))
                 let extrContent = document.querySelector('.details-content')
                 extrContent.classList.add('extra-info-active')
                 count++
@@ -251,6 +272,10 @@ $(document).ready(function () {
             let extrContent = document.querySelector('.details-content')
             extrContent.classList.remove('extra-info-active')
             titleDetails.style.borderBottomWidth = '1.5px'
+
+            if (count === 0) {
+                detailsCont.removeChild(extrContent)
+            }
         }
 
         isOpen = !isOpen
