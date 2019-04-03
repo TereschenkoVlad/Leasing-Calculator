@@ -52,6 +52,8 @@ $(document).ready(function () {
         loadingDiv.style.visibility = 'hidden';
     }
 
+    let getExtraInfo
+
     button.addEventListener('click', function () {
         loadingDiv.style.visibility = 'visible';
 
@@ -169,6 +171,33 @@ $(document).ready(function () {
         }
         leasingCalculate(startPrice, termLeasing, tax, firstPrice, armMonth, onceTax)
         setTimeout(hideSpinner, 500)
+
+         getExtraInfo  = () => {
+            let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'Повна винагорода лізингодавця:', 'Комісія']
+            let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
+
+            titleDetails.style.borderBottomWidth = '0'
+            let detailsContent = document.createElement('UL')
+            detailsContent.classList.add('details-content')
+
+            for (let i=0; i<4; i++) {
+                let li = document.createElement('LI')
+                let spanLeft = document.createElement('SPAN')
+                spanLeft.innerText = extraInfoTitles[i]
+                spanLeft.classList.add('span-left')
+                let spanRight = document.createElement('SPAN')
+                spanRight.innerText = extraInfoValue[i]
+                spanRight.classList.add('span-right')
+                li.appendChild(spanLeft)
+                li.appendChild(spanRight)
+                detailsContent.appendChild(li)
+
+                detailsContent.style.opacity = '1'
+            }
+
+            return detailsContent
+        }
+
     })
 
     arrowBack.addEventListener('click', function () {
@@ -193,31 +222,6 @@ $(document).ready(function () {
         })
     }
 
-   function getExtraInfo () {
-       let extraInfoTitles = ['Щомісячна сума виплат:', 'Кінцева сума виплат:', 'Повна винагорода лізингодавця:', 'Комісія']
-       let extraInfoValue = [jsonData[jsonData.length-1].paymentMonth, jsonData[jsonData.length-1].finalMonthPay, jsonData[jsonData.length-1].taxClient, jsonData[jsonData.length-1].taxOne]
-
-       titleDetails.style.borderBottomWidth = '0'
-       let detailsContent = document.createElement('UL')
-       detailsContent.classList.add('details-content')
-
-       for (let i=0; i<4; i++) {
-           let li = document.createElement('LI')
-           let spanLeft = document.createElement('SPAN')
-           spanLeft.innerText = extraInfoTitles[i]
-           spanLeft.classList.add('span-left')
-           let spanRight = document.createElement('SPAN')
-           spanRight.innerText = extraInfoValue[i]
-           spanRight.classList.add('span-right')
-           li.appendChild(spanLeft)
-           li.appendChild(spanRight)
-           detailsContent.appendChild(li)
-
-           detailsContent.style.opacity = '1'
-       }
-
-       return detailsContent
-   }
 
    let count = 0
 
@@ -227,11 +231,7 @@ $(document).ready(function () {
                 titleDetails.classList.remove('plus')
             }
             titleDetails.classList.add('minus')
-            window.scroll({
-                bottom: -200,
-                left: 0,
-                behavior: 'smooth'
-            });
+
             if (count === 0) {
                 detailsCont.appendChild(getExtraInfo())
                 let extrContent = document.querySelector('.details-content')
